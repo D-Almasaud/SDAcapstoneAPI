@@ -4,7 +4,7 @@ import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 
-import static utilities.Authentication.getSessionId;
+import static utilities.AuthenticationUI.getSessionId;
 
 public class QuasparepartsBaseUrl {
 

@@ -1,4 +1,4 @@
-package pojo.organization;
+package pojos.organization;
 
 import com.github.javafaker.Faker;
 import org.testng.annotations.Test;
@@ -13,7 +13,7 @@ public class CreateOrgnization {
     @Test
     public void CreateOrganizationTest(){
 
-        spec.pathParams("first", "pojo/organization");
+        spec.pathParams("first", "pojos/organization");
 
         //1
      OrganizationDTO paylod = new OrganizationDTO("Abdullah alshaker"

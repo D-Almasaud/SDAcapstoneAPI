@@ -1,4 +1,4 @@
-package pojo.organization;
+package pojos.organization;
 
 import java.io.Serializable;
 
