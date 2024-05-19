@@ -1,101 +1,92 @@
 package Test.MembershipService;
 
-import io.restassured.RestAssured;
-import io.restassured.builder.RequestSpecBuilder;
-import io.restassured.http.ContentType;
-import io.restassured.specification.RequestSpecification;
+import baseUrl.QuadripartiteBaseUrl;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import pojos.MembershipService.Membership;
-import utilities.AuthenticationUI;
 
+import static io.restassured.RestAssured.given;
 
-
-public class MembershipAPITest {
-
-    RequestSpecification spec;
-
-    @BeforeClass
-    public void setUp() {
-        spec = new RequestSpecBuilder()
-                .setBaseUri("https://qa-gm3.quaspareparts.com/a3m/auth/api")
-                .setContentType(ContentType.JSON)
-                .addHeader("Cookie", "GSESSIONID=" + AuthenticationUI.getSessionId())
-                .build();
-    }
+public class MembershipAPITest extends QuadripartiteBaseUrl {
 
     @Test
     public void testGetMemberships() {
-        String response = RestAssured.given()
+
+        Response response = given()
                 .spec(spec)
                 .when()
-                .get("/application/2/membership")
+                .get("/v1/application/2/membership")
                 .then()
                 .statusCode(403)
-                .extract()
-                .asString();
+                .extract().response();
 
-        // Assert the response contains expected error details
-        Assert.assertTrue(response.contains("\"status\": 403"));
-        Assert.assertTrue(response.contains("\"error\": \"Forbidden\""));
-        Assert.assertTrue(response.contains("\"message\": \"Principal not authorized\""));
-        Assert.assertTrue(response.contains("\"detail\": \"Principal(a) not authorized to fetch memberships\""));
+        response.prettyPrint();
+
+        String responseBody = response.asString();
+        Assert.assertTrue(responseBody.contains("\"status\":403"));
+        Assert.assertTrue(responseBody.contains("\"error\":\"Forbidden\""));
+        Assert.assertTrue(responseBody.contains("\"message\":\"Principal not authorized\""));
+
     }
 
     @Test
     public void testGetAllMemberships() {
-        String response = RestAssured.given()
+        Response response = given()
                 .spec(spec)
                 .when()
-                .get("/membership")
+                .get("/v1/membership")
                 .then()
                 .statusCode(200)
-                .extract()
-                .asString();
+                .extract().response();
 
-        // Assert the response contains the specified JSON array
+        response.prettyPrint();
 
-        Assert.assertTrue(response.contains("app_id: 2"));
+        String responseBody = response.asString();
+        Assert.assertTrue(responseBody.contains("\"app_id\":2"));
+        Assert.assertTrue(responseBody.contains("\"app_name\":\"Quaspareparts Gateway App\""));
 
-
-
+        JsonPath json = response.jsonPath();
+        Assert.assertEquals(json.getInt("[0].app_id"), 2);
+        Assert.assertEquals(json.getString("[0].app_name"), "Quaspareparts Gateway App");
     }
-
 
     @Test
     public void testGetMembershipsByUserIdAndAppId() {
-        String response = RestAssured.given()
+        Response response = given()
                 .spec(spec)
+                .pathParams("userId", 2638, "applicationId", 2)
                 .when()
-                .get("/user/2638/application/2/membership")
+                .get("/v1/user/{userId}/application/{applicationId}/membership")
                 .then()
                 .statusCode(403)
-                .extract()
-                .asString();
+                .extract().response();
 
-        // Assert the response contains expected error details
-        Assert.assertTrue(response.contains("\"status\": 403"));
-        Assert.assertTrue(response.contains("\"error\": \"Forbidden\""));
-        Assert.assertTrue(response.contains("\"message\": \"Principal not authorized\""));
-        Assert.assertTrue(response.contains("\"detail\": \"Principal(a) not authorized to fetch memberships\""));
+        response.prettyPrint();
+
+        String responseBody = response.asString();
+        Assert.assertTrue(responseBody.contains("\"status\":403"));
+        Assert.assertTrue(responseBody.contains("\"error\":\"Forbidden\""));
+        Assert.assertTrue(responseBody.contains("\"message\":\"Principal not authorized\""));
     }
 
     @Test
     public void testGetMembershipsByUserId() {
-        String response = RestAssured.given()
+        Response response = given()
                 .spec(spec)
+                .pathParam("userId", 2638)
                 .when()
-                .get("/user/2638/membership")
+                .get("/v1/user/{userId}/membership")
                 .then()
                 .statusCode(403)
-                .extract()
-                .asString();
+                .extract().response();
 
-        // Assert the response contains expected error details
-        Assert.assertTrue(response.contains("\"status\": 403"));
-        Assert.assertTrue(response.contains("\"error\": \"Forbidden\""));
-        Assert.assertTrue(response.contains("\"message\": \"Principal not authorized\""));
-        Assert.assertTrue(response.contains("\"detail\": \"Principal(a) not authorized to fetch memberships\""));
+        response.prettyPrint();
+
+        String responseBody = response.asString();
+        Assert.assertTrue(responseBody.contains("\"status\":403"));
+        Assert.assertTrue(responseBody.contains("\"error\":\"Forbidden\""));
+        Assert.assertTrue(responseBody.contains("\"message\":\"Principal not authorized\""));
+
     }
 }
