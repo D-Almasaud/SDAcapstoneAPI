@@ -4,7 +4,7 @@ import com.github.javafaker.Faker;
 import org.testng.annotations.Test;
 import utilities.ObjectMapperUtils;
 
-import static baseUrl.QuasparepartsBaseUrl.spec;
+import static baseUrl.QuadripartiteBaseUrl.spec;
 
 public class CreateOrgnization {
 

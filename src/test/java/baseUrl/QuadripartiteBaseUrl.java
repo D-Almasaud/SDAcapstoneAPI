@@ -6,7 +6,7 @@ import io.restassured.specification.RequestSpecification;
 
 import static utilities.AuthenticationUI.getSessionId;
 
-public class QuasparepartsBaseUrl {
+public class QuadripartiteBaseUrl {
 
 
     public static RequestSpecification spec;
