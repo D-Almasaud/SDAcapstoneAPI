@@ -10,13 +10,14 @@ import java.time.Duration;
 public class AuthenticationUI {
 
     public static String getSessionId(){
-        WebDriver driver = new ChromeDriver(new ChromeOptions().addArguments("--headless"));
+        WebDriver driver = new ChromeDriver();
+        //new ChromeOptions().addArguments("--headless")
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
         driver.get("https://qa-gm3.quaspareparts.com/");
         driver.findElement(By.linkText("Login")).click();
-        driver.findElement(By.id("username")).sendKeys("cstm@testevolve.com");
-        driver.findElement(By.id("password")).sendKeys("CvdPixvARzUrmuR");
+        driver.findElement(By.id("username")).sendKeys("emir@clarusway.com");
+        driver.findElement(By.id("password")).sendKeys("pNXp8_qIjdOYEJW");
         driver.findElement(By.tagName("button")).click();
 
         return driver.manage().getCookieNamed("GSESSIONID").getValue();
