@@ -8,7 +8,7 @@ import org.testng.annotations.BeforeSuite;
 
 import static utilities.AuthenticationUI.getSessionId;
 
-public class QuasparepartsBaseUrl {
+public class QuadripartiteBaseUrl {
 
 
     public static RequestSpecification spec;
