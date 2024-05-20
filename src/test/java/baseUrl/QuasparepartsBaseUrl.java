@@ -17,14 +17,12 @@ public class QuasparepartsBaseUrl {
     @BeforeSuite
     public void getSID(){
 
-
         sessionID = getSessionId();
-
 
     }
 
 
-@BeforeMethod
+    @BeforeMethod
     public void setUp(){
 
         spec = new RequestSpecBuilder()
