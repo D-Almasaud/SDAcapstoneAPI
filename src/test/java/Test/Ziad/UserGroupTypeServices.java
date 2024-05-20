@@ -211,10 +211,11 @@ public class UserGroupTypeServices extends QuasparepartsBaseUrl {
         spec.pathParams("first", "user-group-type"
                 , "second", id);
 
-        Response response = given().when().get("{first}/{second}");
-        //response.prettyPrint();
-
-        System.out.println("response.statusCode() = " + response.statusCode());
+        Response response = given(spec).when().get("{first}/{second}");
+        response
+                .then()
+                .statusCode(404);
+        System.out.println("statusCode = " + response.statusCode());         // After updating u get 404
     }
 
 }

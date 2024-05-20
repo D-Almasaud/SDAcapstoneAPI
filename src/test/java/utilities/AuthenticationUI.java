@@ -15,8 +15,8 @@ public class AuthenticationUI {
 
         driver.get("https://qa-gm3.quaspareparts.com/");
         driver.findElement(By.linkText("Login")).click();
-        driver.findElement(By.id("username")).sendKeys("emir@clarusway.com");
-        driver.findElement(By.id("password")).sendKeys("pNXp8_qIjdOYEJW");
+        driver.findElement(By.id("username")).sendKeys("cstm@testevolve.com");
+        driver.findElement(By.id("password")).sendKeys("E2wyDSXyyJjexji");
         driver.findElement(By.tagName("button")).click();
 
         return driver.manage().getCookieNamed("GSESSIONID").getValue();
