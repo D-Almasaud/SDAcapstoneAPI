@@ -1,53 +1,54 @@
 package Test.OrganizationServices;
 
-import com.github.javafaker.Faker;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
 import org.testng.annotations.Test;
-import pojos.organization.OrganizationDTO;
-import utilities.ObjectMapperUtils;
+import pojos.organization.CreateOrgnizationPOJO;
+
+import java.io.*;
 
 import static baseUrl.QuasparepartsBaseUrl.spec;
+import static io.restassured.RestAssured.given;
 
 public class CreateOrgnization {
 
+    static long orgId;
 
 
     @Test
     public void CreateOrganizationTest(){
 
-        spec.pathParams("first", "pojos/organization");
+        spec.pathParam("first", "organization");
 
         //1
-     OrganizationDTO paylod = new OrganizationDTO("Abdullah alshaker"
-             , 5
-             , "2024-04-23T16:35:41.492077Z"
-             , 5
-             , "2024-05-15T09:07:15.578529Z"
-             , 5);
 
-        System.out.println("paylod = " + paylod);
+        CreateOrgnizationPOJO payloadEmir = new CreateOrgnizationPOJO( 7,"Abdullah1234");
+
+        Response response = given()
+                .spec(spec)
+                .body(payloadEmir)
+                .when()
+                .post("{first}");
 
 
-        //2
-//        OrganizationDTO paylod2 = new OrganizationDTO();
-//        paylod2.setName(Faker.instance().name().firstName());
-//        paylod2.setCreatedAt(Faker.instance().bothify(Faker.instance().toString()).toLowerCase());
-//
-//
-//
-//        //3
-//
-//        String body = """
-//                {
-//                    "name": "Abdullah alshaker",
-//                    "founder_id": 5,
-//                    "created_at": "2024-04-23T16:35:41.492077Z",
-//                    "created_by": 5,
-//                    "updated_at": "2024-05-15T09:07:15.578529Z",
-//                    "updated_by": 5
-//                }""";
-//
-//     OrganizationDTO paylod3 = ObjectMapperUtils.convertJsonToJava(body,OrganizationDTO.class);
-//        paylod3.setName(Faker.instance().name().firstName());
+
+
+        JsonPath json =response.jsonPath();
+        json.prettyPrint();
+        orgId = json.get("id");
+
+        File file = new File("ids");
+        FileOutputStream fos;
+        try {
+            fos = new FileOutputStream(file);
+            fos.write(("" + orgId).getBytes());
+            fos.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+
 
     }
 

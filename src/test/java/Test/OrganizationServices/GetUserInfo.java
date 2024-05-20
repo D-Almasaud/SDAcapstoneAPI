@@ -1,21 +1,47 @@
 package Test.OrganizationServices;
 
-import io.restassured.http.ContentType;
+import baseUrl.AbdullahBaseUrl;
+
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
-import pojos.organization.OrganizationDTO;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
-import static baseUrl.QuasparepartsBaseUrl.spec;
 import static io.restassured.RestAssured.given;
+import static org.testng.Assert.assertEquals;
 
-public class GetUserInfo {
+public class GetUserInfo extends AbdullahBaseUrl {
 
-   @Test
-   public void test(){
-       String url = "https://qa-gm3.quaspareparts.com/a3m/auth/userinfo";
-       Response response = given().get(url);
-       response.then().contentType(ContentType.JSON);
-       response.prettyPrint();
-   }
+
+    static long sub_id;
+
+    @Test
+    public void getUserInfoTest() {
+
+       spec.pathParam("first","userinfo");
+
+        Response response = given(spec).get("{first}");
+
+        response.prettyPrint();
+
+        //Assert response status code is 200
+        assertEquals(response.statusCode(),200);
+
+
+        JsonPath json =response.jsonPath();
+        sub_id = json.get("sub_app");
+
+        File file = new File("sub_id");
+        FileOutputStream fos;
+        try {
+            fos = new FileOutputStream(file);
+            fos.write(("" + sub_id).getBytes());
+            fos.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }

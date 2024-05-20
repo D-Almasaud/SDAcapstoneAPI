@@ -6,7 +6,7 @@ import io.restassured.specification.RequestSpecification;
 
 import static utilities.AuthenticationUI.getSessionId;
 
-public class QuasparepartsBaseUrl {
+public class AbdullahBaseUrl {
 
 
     public static RequestSpecification spec;
@@ -14,7 +14,7 @@ public class QuasparepartsBaseUrl {
     static {
 
         spec = new RequestSpecBuilder()
-                .setBaseUri("https://qa-gm3.quaspareparts.com/a3m/auth/api")
+                .setBaseUri("https://qa-gm3.quaspareparts.com/a3m/auth/")
                 .setContentType(ContentType.JSON)
                 .addHeader("Cookie", "GSESSIONID=" + getSessionId())
                 .build();
