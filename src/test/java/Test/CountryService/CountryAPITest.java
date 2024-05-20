@@ -1,9 +1,7 @@
 package Test.CountryService;
 
 import io.restassured.RestAssured;
-import io.restassured.specification.RequestSpecification;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import baseUrl.QuasparepartsBaseUrl;
 
