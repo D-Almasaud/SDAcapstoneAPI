@@ -17,9 +17,7 @@ public class QuasparepartsBaseUrl {
     @BeforeSuite
     public void getSID(){
 
-
         sessionID = getSessionId();
-
 
     }
 
