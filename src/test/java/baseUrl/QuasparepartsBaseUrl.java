@@ -22,7 +22,7 @@ public class QuasparepartsBaseUrl {
     }
 
 
-@BeforeMethod
+    @BeforeMethod
     public void setUp(){
 
         spec = new RequestSpecBuilder()
@@ -30,7 +30,6 @@ public class QuasparepartsBaseUrl {
                 .setContentType(ContentType.JSON)
                 .addHeader("Cookie", "GSESSIONID=" + sessionID)
                 .build();
-
 
     }
 
