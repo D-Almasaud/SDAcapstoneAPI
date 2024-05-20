@@ -1,6 +1,6 @@
 package Test.MembershipService;
 
-import baseUrl.QuadripartiteBaseUrl;
+import baseUrl.QuasparepartsBaseUrl;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.testng.Assert;
@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 
-public class MembershipAPITest extends QuadripartiteBaseUrl {
+public class MembershipAPITest extends QuasparepartsBaseUrl {
 
     @Test
     public void testGetMemberships() {

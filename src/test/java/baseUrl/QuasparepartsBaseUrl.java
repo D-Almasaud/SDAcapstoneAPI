@@ -8,7 +8,7 @@ import org.testng.annotations.BeforeSuite;
 
 import static utilities.AuthenticationUI.getSessionId;
 
-public class QuadripartiteBaseUrl {
+public class QuasparepartsBaseUrl {
 
 
     public static RequestSpecification spec;
@@ -32,6 +32,7 @@ public class QuadripartiteBaseUrl {
                 .setContentType(ContentType.JSON)
                 .addHeader("Cookie", "GSESSIONID=" + sessionID)
                 .build();
+
 
     }
 
