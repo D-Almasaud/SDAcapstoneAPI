@@ -1,1 +1,0 @@
-{"uuid":"f993e6cd-dfc8-4cea-afd3-9717518c12ee","name":"Test.MembershipService.MembershipAPITest","children":["6067f2a8-5e83-41ab-aa1e-e1c84e18479f"],"befores":[{"name":"setUp","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1716108953949,"stop":1716108964605}],"afters":[],"start":1716108953913,"stop":1716108966393}

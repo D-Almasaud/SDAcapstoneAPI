@@ -1,1 +1,0 @@
-{"uuid":"8862ef4c-8fea-4c0e-b784-f30c4253a8af","name":"Test.CountryService.CountryAPITest","children":["88329b62-faff-40e9-add1-220fbd06bfe8"],"befores":[{"name":"setUp","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1716108118226,"stop":1716108136451}],"afters":[],"start":1716108118147,"stop":1716108143529}
