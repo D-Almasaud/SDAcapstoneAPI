@@ -7,7 +7,7 @@ import pojos.organization.CreateOrgnizationPOJO;
 
 import java.io.*;
 
-import static baseUrl.QuasparepartsBaseUrl.spec;
+import static baseUrl.Baseurlinfo.spec;
 import static io.restassured.RestAssured.given;
 
 public class CreateOrgnization {
@@ -22,13 +22,13 @@ public class CreateOrgnization {
 
         //1
 
-        CreateOrgnizationPOJO payloadEmir = new CreateOrgnizationPOJO( 7,"Abdullah1234");
+        CreateOrgnizationPOJO payload = new CreateOrgnizationPOJO( 5,"Abdullah1234");
 
         Response response = given()
                 .spec(spec)
-                .body(payloadEmir)
+                .body(payload)
                 .when()
-                .post("{first}");
+                .post("/{first}");
 
 
 

@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 import java.util.List;
 import java.util.Random;
 
-import static baseUrl.QuasparepartsBaseUrl.spec;
+import static baseUrl.Baseurlinfo.spec;
 import static io.restassured.RestAssured.given;
 
 public class GetAllOrganization {

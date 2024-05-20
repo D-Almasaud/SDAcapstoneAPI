@@ -5,7 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pojos.organization.OrganizitionPOJO;
 
-import static baseUrl.QuasparepartsBaseUrl.spec;
+import static baseUrl.Baseurlinfo.spec;
 import static io.restassured.RestAssured.given;
 import static Test.OrganizationServices.GetAllOrganization.*;
 
