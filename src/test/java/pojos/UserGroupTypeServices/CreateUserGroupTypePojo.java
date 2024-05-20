@@ -1,5 +1,8 @@
 package pojos.UserGroupTypeServices;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class CreateUserGroupTypePojo {
 
     private Integer id;

@@ -20,6 +20,7 @@ public class UserGroupTypeServices extends QuasparepartsBaseUrl {
 
     int id;
 
+
     //Get all the group user type
     @Test(description = "Get all the group user type")
     public void TC008_01() {
@@ -48,18 +49,19 @@ public class UserGroupTypeServices extends QuasparepartsBaseUrl {
     public void TC008_02() {
         String url = "https://qa-gm3.quaspareparts.com/a3m/auth/api/user-group-type";
         Response response = given().when().get(url);
-        System.out.println("(response = " + (response.statusCode()));
+        System.out.println("response is = " + (response.statusCode()));
         response.then().statusCode(401);
     }
 
 
+    //Create user group
     @Test
     public void TC008_03() {
         spec.pathParam("first", "user-group-type");
 
         //Creating payload and making it Pojo
         CreateUserGroupTypePojo payload = new CreateUserGroupTypePojo();
-        System.out.println("payload = " + payload);
+
         payload.setDescription(Faker.instance().lorem().sentence());
         payload.setName(Faker.instance().company().name());
 
@@ -69,6 +71,8 @@ public class UserGroupTypeServices extends QuasparepartsBaseUrl {
 
         //Getiing the id from the response, so i can delete it later
         id = response.jsonPath().getInt("id");
+
+
         SoftAssert softAssert = new SoftAssert();
 
         //The actual data from the database we switching it to Pojo so we can assert it
@@ -103,19 +107,18 @@ public class UserGroupTypeServices extends QuasparepartsBaseUrl {
     //Updating the User group
     @Test(dependsOnMethods = "TC008_03")
     public void TC008_05() {
-        spec.pathParams("first", "user-group-type"
-        ,"second",id);
+        spec.pathParam("first", "user-group-type");
 
         String expectedStr = "{\n" +
-                "                        \"id\": "+ id +"  ,\n" +
-                "                        \"name\": \"afterupdating11\",\n" +
+                "                        \"id\": "+ id +",\n" +
+                "                        \"name\": \""+Faker.instance().name().firstName()+"\",\n" +
                 "                        \"description\": \"This Is Software Testing\"\n" +
                 "                    }";
 
 
         CreateUserGroupTypePojo expectedToDo = ObjectMapperUtils.convertJsonToJava(expectedStr, CreateUserGroupTypePojo.class);
 
-        Response response = given(spec).when().body(expectedToDo).put("{first}/{second}");
+        Response response = given(spec).when().body(expectedToDo).put("{first}");
         response.prettyPrint();
 
         response.jsonPath().getString("name");
@@ -132,9 +135,7 @@ public class UserGroupTypeServices extends QuasparepartsBaseUrl {
     //Updating the User group with null id
     @Test(dependsOnMethods = "TC008_03")
     public void TC008_06() {
-        spec.pathParams("first", "user-group-type"
-                , "second", id);
-
+        spec.pathParam("first", "user-group-type");
         String expectedStr = """
                 {
                                         "id": null  ,
@@ -147,7 +148,7 @@ public class UserGroupTypeServices extends QuasparepartsBaseUrl {
         //Suleyman method
 //        expectedToDo.setId(id);
 
-        Response response = given(spec).when().body(expectedToDo).put("{first}/{second}");
+        Response response = given(spec).when().body(expectedToDo).put("{first}");
         response.prettyPrint();
 
         response
@@ -157,6 +158,7 @@ public class UserGroupTypeServices extends QuasparepartsBaseUrl {
 
     }
 
+    //Checking the changes of the updated info if its updated or no
     @Test(dependsOnMethods = "TC008_06")
     public void TC008_07() {
         spec.pathParams("first", "user-group-type"
@@ -168,15 +170,52 @@ public class UserGroupTypeServices extends QuasparepartsBaseUrl {
     }
 
 
+    //This testcase will delete the user group
+    @Test(dependsOnMethods = "TC008_06")
+    public void TC008_08() {
+        spec.pathParams("first", "user-group-type"
+                , "second", id);
 
 
-    //    //Depends on the creating TestCase so we can store the id and delete it
-//    @Test(dependsOnMethods = "TC008_03")
-//    public void TC008_10() {
-//        spec.pathParam("first", "user-group-type");
-//    }
-//
-//}
+        Response response = given(spec).when().delete("{first}/{second}");
+        response.prettyPrint();
 
+        response
+                .then()
+                .statusCode(200);           // the status code for the delete is 200
+        System.out.println("response.statusCode is = " + response.statusCode());
+    }
+
+    //This testcase will should be failed 500, because the user is not existed in the user group
+    @Test(dependsOnMethods = "TC008_06")
+    public void TC008_09() {
+        spec.pathParams("first", "user-group-type"
+                , "second", Faker.instance().idNumber().invalid());
+
+
+        Response response = given(spec).when().delete("{first}/{second}");
+        response.prettyPrint();
+
+        response
+                .then()
+                .statusCode(500);           // the status code for the delete is 500
+    }
+
+
+
+
+      //This testcase to get the last id to check if its deleted or know Depends on the creating TestCase so we can store the id and delete it
+    @Test(dependsOnMethods = "TC008_06")
+    public void TC008_10() {
+
+        spec.pathParams("first", "user-group-type"
+                , "second", id);
+
+        Response response = given().when().get("{first}/{second}");
+        //response.prettyPrint();
+
+        System.out.println("response.statusCode() = " + response.statusCode());
+    }
 
 }
+
