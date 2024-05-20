@@ -17,9 +17,7 @@ public class QuadripartiteBaseUrl {
     @BeforeSuite
     public void getSID(){
 
-
         sessionID = getSessionId();
-
 
     }
 
