@@ -1,4 +1,4 @@
-package Test.Rand;
+package Test.userServices;
 
 import baseUrl.QuasparepartsBaseUrl;
 import com.github.javafaker.Faker;

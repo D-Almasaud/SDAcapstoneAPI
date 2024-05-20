@@ -1,4 +1,4 @@
-package Test.Rand;
+package Test.userServices;
 
 import baseUrl.Baseurlinfo;
 import io.restassured.response.Response;
