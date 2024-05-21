@@ -9,19 +9,19 @@ import static io.restassured.RestAssured.given;
 
 public class GetOrganizationByAppId {
 
-@Test
-        public void getOrgByAppId() throws FileNotFoundException {
+@Test // this test for get info of organization by subscription id
+public void getOrgByAppId() throws FileNotFoundException {
 
-    // Read sub_id from file
+    // Read from "sub_id" file the subscription id was saved in that file after run user info test
     File file = new File("sub_id");
     Scanner scanner = new Scanner(file);
     int supId = scanner.nextInt();
     scanner.close();
-
-
+  
+    // get all info by useing subscription id
     spec.pathParams("first","application","second",supId,"third","organization");
     Response response = given(spec).when().get("/{first}/{second}/{third}").then().log().all().extract().response();
-    //response.prettyPrint();
+    response.prettyPrint();
 
 
 }

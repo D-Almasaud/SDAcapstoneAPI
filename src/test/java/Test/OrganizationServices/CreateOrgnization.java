@@ -20,10 +20,8 @@ public class CreateOrgnization {
 
         spec.pathParam("first", "organization");
 
-        //1
-
+        // create a new user
         CreateOrgnizationPOJO payload = new CreateOrgnizationPOJO( 5,"Abdullah1234");
-
         Response response = given()
                 .spec(spec)
                 .body(payload)
@@ -32,11 +30,12 @@ public class CreateOrgnization {
 
 
 
-
+        // this code extracts the organization ID from a JSON response, prints the JSON,
+        // and writes the ID to a file named "ids".
+        // try statement to handle the FileOutputStream, ensuring proper resource management and error handling.
         JsonPath json =response.jsonPath();
         json.prettyPrint();
         orgId = json.get("id");
-
         File file = new File("ids");
         FileOutputStream fos;
         try {
