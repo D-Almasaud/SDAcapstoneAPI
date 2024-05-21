@@ -132,7 +132,7 @@
 <!--                        <include></include> &lt;!&ndash; Specify the pages class to run here &ndash;&gt;-->
                     </includes>
                     <suiteXmlFiles>
-                        <suiteXmlFile>testng.xml</suiteXmlFile>
+                        <suiteXmlFile>Ziad's.xml</suiteXmlFile>
                     </suiteXmlFiles>
                     <testFailureIgnore>true</testFailureIgnore>
                 </configuration>
