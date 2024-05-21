@@ -1,13 +1,9 @@
-package Test.Ziad;
+package Test.UserGroupTypeServices;
 
 import baseUrl.QuasparepartsBaseUrl;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.javafaker.Faker;
-import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
-import org.hamcrest.Description;
 import org.testng.Assert;
-import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pojos.UserGroupTypeServices.CreateUserGroupTypePojo;
