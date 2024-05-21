@@ -7,6 +7,7 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.hamcrest.Description;
 import org.testng.Assert;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pojos.UserGroupTypeServices.CreateUserGroupTypePojo;
@@ -30,9 +31,8 @@ public class UserGroupTypeServices extends QuasparepartsBaseUrl {
         Response response = given(spec).when().get("{first}");
         response.prettyPrint();
 
-        response
-                .then()
-                .statusCode(200);
+        //-------------- Asserting ------------//
+
         String responseStr = response.asString();
         assertTrue(responseStr.contains("id"));
 
@@ -41,16 +41,20 @@ public class UserGroupTypeServices extends QuasparepartsBaseUrl {
                 .statusCode(200)
                 .body(containsString("id"))
                 .body(containsString("name"));
+
+
+        System.out.println("<------------------------------->\t");
     }
 
 
-    //Negative test case, user search without having the token
+    //Negative testcase. User search without having the token
     @Test
     public void TC008_02() {
         String url = "https://qa-gm3.quaspareparts.com/a3m/auth/api/user-group-type";
         Response response = given().when().get(url);
         System.out.println("response is = " + (response.statusCode()));
         response.then().statusCode(401);
+        System.out.println("<------------------------------->\t");
     }
 
 
@@ -82,10 +86,11 @@ public class UserGroupTypeServices extends QuasparepartsBaseUrl {
         softAssert.assertEquals(201, response.statusCode());
         softAssert.assertEquals(actualData.getName(), payload.getName());
         softAssert.assertEquals(actualData.getDescription(), payload.getDescription());
+        System.out.println("<------------------------------->\t");
 
     }
 
-    //Negative test case, Creating with specsfic id
+    //Negative test case. Creating with specsfic id
     @Test
     public void TC008_04() {
         spec.pathParam("first", "user-group-type");
@@ -100,6 +105,7 @@ public class UserGroupTypeServices extends QuasparepartsBaseUrl {
                 .then()
                 .statusCode(500);
         System.out.println("statusCode = " + response.statusCode());
+        System.out.println("<------------------------------->\t");
     }
 
 
@@ -129,10 +135,11 @@ public class UserGroupTypeServices extends QuasparepartsBaseUrl {
         Assert.assertEquals(200, response.statusCode());            // After updating u get 200
         Assert.assertEquals(actualData.getName(), expectedToDo.getName());
         Assert.assertEquals(actualData.getDescription(), expectedToDo.getDescription());
+        System.out.println("<------------------------------->\t");
 
     }
 
-    //Updating the User group with null id
+    //Negative testcase. Updating the User group with null id
     @Test(dependsOnMethods = "TC008_03")
     public void TC008_06() {
         spec.pathParam("first", "user-group-type");
@@ -167,6 +174,7 @@ public class UserGroupTypeServices extends QuasparepartsBaseUrl {
         Response response = given(spec).when().get("{first}/{second}");
         response.prettyPrint();
 
+        System.out.println("<------------------------------->\t \t");
     }
 
 
@@ -184,9 +192,10 @@ public class UserGroupTypeServices extends QuasparepartsBaseUrl {
                 .then()
                 .statusCode(200);           // the status code for the delete is 200
         System.out.println("response.statusCode is = " + response.statusCode());
+        System.out.println("<------------------------------->\t");
     }
 
-    //This testcase will should be failed 500, because the user is not existed in the user group
+    //Negative testcase This testcase will should be failed 500, because the user is not existed in the user group
     @Test(dependsOnMethods = "TC008_06")
     public void TC008_09() {
         spec.pathParams("first", "user-group-type"
@@ -199,6 +208,7 @@ public class UserGroupTypeServices extends QuasparepartsBaseUrl {
         response
                 .then()
                 .statusCode(500);           // the status code for the delete is 500
+        System.out.println("<------------------------------->\t");
     }
 
 
@@ -216,6 +226,7 @@ public class UserGroupTypeServices extends QuasparepartsBaseUrl {
                 .then()
                 .statusCode(404);
         System.out.println("statusCode = " + response.statusCode());         // After updating u get 404
+        System.out.println("<------------------------------->\t");
     }
 
 }
