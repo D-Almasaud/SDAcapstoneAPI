@@ -1,1 +1,0 @@
-{"uuid":"48ff6131-1c85-45c0-8255-569855eb01db","name":"Default Suite","children":["f62d752b-855d-473e-95f4-021be1d7391c"],"befores":[{"name":"getSID","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1716192714521,"stop":1716192722982}],"afters":[],"start":1716192714502,"stop":1716192724969}

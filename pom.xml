@@ -129,8 +129,11 @@
                     <argLine>-Dfile.encoding=UTF-8</argLine>
                     <useFile>false</useFile>
                     <includes>
-                        <include></include> <!-- Specify the pages class to run here -->
+<!--                        <include></include> &lt;!&ndash; Specify the pages class to run here &ndash;&gt;-->
                     </includes>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>testng.xml</suiteXmlFile>
+                    </suiteXmlFiles>
                     <testFailureIgnore>true</testFailureIgnore>
                 </configuration>
             </plugin>

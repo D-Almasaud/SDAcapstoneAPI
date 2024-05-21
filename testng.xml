@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true"
+          name="/Users/ziad53/IdeaProjects/SDAcapstoneAPI/src/test/java/Test/UserGroupTypeServices/UserGroupTypeServices.java">
+        <classes>
+            <class name="Test.UserGroupTypeServices.UserGroupTypeServices">
+                <methods>
+                    <include name="TC008_01"/>
+                    <include name="TC008_02"/>
+                    <include name="TC008_03"/>
+                    <include name="TC008_04"/>
+                    <include name="TC008_05"/>
+                    <include name="TC008_06"/>
+                    <include name="TC008_07"/>
+                    <include name="TC008_08"/>
+                    <include name="TC008_09"/>
+                    <include name="TC008_10"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
