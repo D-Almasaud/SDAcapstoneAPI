@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 import java.util.List;
 import java.util.Random;
 
-import static baseUrl.QuasparepartsBaseUrl.spec;
+import static baseUrl.Baseurlinfo.spec;
 import static io.restassured.RestAssured.given;
 
 public class GetAllOrganization {
@@ -17,6 +17,11 @@ public class GetAllOrganization {
    static Object testName;
    static Object founder_id;
     static String newTry;
+
+
+
+    // This test retrieves all organizations via an API request, and processes the response
+    // to extract and print organization details, including a random organization ID, name, and founder ID
     @Test
     public void GetAllOrganizationTest(){
 

@@ -14,7 +14,7 @@ public class Baseurlinfo {
     static {
 
         spec = new RequestSpecBuilder()
-                .setBaseUri("https://qa-gm3.quaspareparts.com/a3m/auth")
+                .setBaseUri("https://qa-gm3.quaspareparts.com/a3m/auth/api")
                 .setContentType(ContentType.JSON)
                 .addHeader("Cookie", "GSESSIONID=" + getSessionId())
                 .build();

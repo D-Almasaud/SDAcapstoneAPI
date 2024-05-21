@@ -15,7 +15,7 @@ import static org.testng.Assert.assertEquals;
 public class GetUserInfo extends AbdullahBaseUrl {
 
 
-    static long sub_id;
+    static int sub_id;
 
     @Test
     public void getUserInfoTest() {
@@ -28,6 +28,7 @@ public class GetUserInfo extends AbdullahBaseUrl {
 
         //Assert response status code is 200
         assertEquals(response.statusCode(),200);
+
 
 
         JsonPath json =response.jsonPath();

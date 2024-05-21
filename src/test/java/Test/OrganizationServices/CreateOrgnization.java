@@ -7,7 +7,7 @@ import pojos.organization.CreateOrgnizationPOJO;
 
 import java.io.*;
 
-import static baseUrl.QuasparepartsBaseUrl.spec;
+import static baseUrl.Baseurlinfo.spec;
 import static io.restassured.RestAssured.given;
 
 public class CreateOrgnization {
@@ -20,23 +20,22 @@ public class CreateOrgnization {
 
         spec.pathParam("first", "organization");
 
-        //1
-
-        CreateOrgnizationPOJO payloadEmir = new CreateOrgnizationPOJO( 7,"Abdullah1234");
-
+        // create a new user
+        CreateOrgnizationPOJO payload = new CreateOrgnizationPOJO( 5,"Abdullah1234");
         Response response = given()
                 .spec(spec)
-                .body(payloadEmir)
+                .body(payload)
                 .when()
-                .post("{first}");
+                .post("/{first}");
 
 
 
-
+        // this code extracts the organization ID from a JSON response, prints the JSON,
+        // and writes the ID to a file named "ids".
+        // try statement to handle the FileOutputStream, ensuring proper resource management and error handling.
         JsonPath json =response.jsonPath();
         json.prettyPrint();
         orgId = json.get("id");
-
         File file = new File("ids");
         FileOutputStream fos;
         try {
