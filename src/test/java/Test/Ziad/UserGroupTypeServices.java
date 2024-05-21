@@ -42,6 +42,8 @@ public class UserGroupTypeServices extends QuasparepartsBaseUrl {
                 .body(containsString("id"))
                 .body(containsString("name"));
 
+        String s = Faker.instance().idNumber().invalid();System.out.println("s = " + s);
+
 
         System.out.println("<------------------------------->\t");
     }
